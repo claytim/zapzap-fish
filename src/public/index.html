@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZapZap - WhatsApp Group Scanner</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo">
+                <h1>📱 ZapZap</h1>
+                <p>WhatsApp Group Scanner</p>
+            </div>
+            <div class="connection-status">
+                <div id="status-indicator" class="status-indicator disconnected">
+                    <span class="status-dot"></span>
+                    <span id="status-text">Desconectado</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main">
+            <!-- Connection Section -->
+            <section id="connection-section" class="section">
+                <div class="section-header">
+                    <h2>🔗 Conexão WhatsApp</h2>
+                    <p>Conecte-se ao WhatsApp para escanear seus grupos</p>
+                </div>
+                
+                <div class="connection-controls">
+                    <button id="connect-btn" class="btn btn-primary">
+                        <span class="btn-icon">🚀</span>
+                        Conectar WhatsApp
+                    </button>
+                    <button id="disconnect-btn" class="btn btn-secondary" style="display: none;">
+                        <span class="btn-icon">🔌</span>
+                        Desconectar
+                    </button>
+                </div>
+
+                <!-- QR Code Display -->
+                <div id="qr-container" class="qr-container" style="display: none;">
+                    <div class="qr-header">
+                        <h3>📷 Escaneie o QR Code</h3>
+                        <p>Abra o WhatsApp no seu celular e escaneie o código</p>
+                    </div>
+                    <div class="qr-code">
+                        <img id="qr-image" src="" alt="QR Code">
+                    </div>
+                    <div class="qr-instructions">
+                        <ol>
+                            <li>Abra o WhatsApp no seu celular</li>
+                            <li>Toque em Menu (⋮) ou Configurações</li>
+                            <li>Toque em "WhatsApp Web"</li>
+                            <li>Escaneie este código</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <!-- Connection Info -->
+                <div id="connection-info" class="connection-info" style="display: none;">
+                    <div class="user-info">
+                        <h3>✅ Conectado com sucesso!</h3>
+                        <p id="user-name">Carregando informações...</p>
+                        <p id="user-number">Carregando número...</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Groups Section -->
+            <section id="groups-section" class="section" style="display: none;">
+                <div class="section-header">
+                    <h2>👥 Seus Grupos</h2>
+                    <div class="groups-controls">
+                        <button id="fetch-groups-btn" class="btn btn-primary">
+                            <span class="btn-icon">🔄</span>
+                            Buscar Grupos
+                        </button>
+                        <button id="clear-groups-btn" class="btn btn-outline">
+                            <span class="btn-icon">🗑️</span>
+                            Limpar Cache
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Search Bar -->
+                <div class="search-container">
+                    <input type="text" id="search-input" placeholder="🔍 Pesquisar grupos..." class="search-input">
+                </div>
+
+                <!-- Statistics -->
+                <div id="stats-container" class="stats-container" style="display: none;">
+                    <div class="stat-card">
+                        <div class="stat-number" id="total-groups">0</div>
+                        <div class="stat-label">Total de Grupos</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="admin-groups">0</div>
+                        <div class="stat-label">Admin em</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="total-participants">0</div>
+                        <div class="stat-label">Total de Participantes</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="avg-participants">0</div>
+                        <div class="stat-label">Média por Grupo</div>
+                    </div>
+                </div>
+
+                <!-- Groups List -->
+                <div id="groups-container" class="groups-container">
+                    <div id="loading-groups" class="loading" style="display: none;">
+                        <div class="spinner"></div>
+                        <p>Carregando grupos...</p>
+                    </div>
+                    <div id="no-groups" class="empty-state" style="display: none;">
+                        <div class="empty-icon">📭</div>
+                        <h3>Nenhum grupo encontrado</h3>
+                        <p>Clique em "Buscar Grupos" para carregar seus grupos do WhatsApp</p>
+                    </div>
+                    <div id="groups-list" class="groups-list"></div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>&copy; 2024 ZapZap - Ferramenta para escanear grupos do WhatsApp</p>
+        </footer>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div id="loading-overlay" class="loading-overlay" style="display: none;">
+        <div class="loading-content">
+            <div class="spinner large"></div>
+            <p id="loading-text">Processando...</p>
+        </div>
+    </div>
+
+    <!-- Toast Notifications -->
+    <div id="toast-container" class="toast-container"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
